@@ -10,11 +10,18 @@
     "type": "git",
     "url": "git+https://github.com/mezentsevs/github-followers-tracker.git"
   },
-  "keywords": ["github", "followers", "tracker"],
+  "keywords": [
+    "github",
+    "followers",
+    "tracker"
+  ],
   "author": "mezentsevs",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/mezentsevs/github-followers-tracker/issues"
   },
-  "homepage": "https://github.com/mezentsevs/github-followers-tracker#readme"
+  "homepage": "https://github.com/mezentsevs/github-followers-tracker#readme",
+  "dependencies": {
+    "dotenv": "^17.2.3"
+  }
 }
