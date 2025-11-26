@@ -23,5 +23,9 @@
   "homepage": "https://github.com/mezentsevs/github-followers-tracker#readme",
   "dependencies": {
     "dotenv": "^17.2.3"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.1",
+    "typescript": "^5.9.3"
   }
 }
