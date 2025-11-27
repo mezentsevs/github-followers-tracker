@@ -32,8 +32,7 @@ cp .env.example .env
 - Set expiration and check only "public_repo" scope
 - Copy the token immediately
 
-3. Configure:
-Edit .env file and add your credentials:
+3. Edit .env file and add your credentials:
 ``` bash
 GITHUB_TOKEN=your_github_token_here
 GITHUB_USERNAME=your_github_username_here
