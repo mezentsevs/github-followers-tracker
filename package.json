@@ -5,10 +5,9 @@
   "description": "A TypeScript application that tracks your GitHub followers and detects changes between runs.",
   "main": "index.js",
   "scripts": {
-    "start": "node dist/tracker.js",
     "build": "tsc",
-    "setup": "cp .env.example .env",
-    "postinstall": "npm run build"
+    "postinstall": "npm run build",
+    "track": "node dist/tracker.js"
   },
   "repository": {
     "type": "git",
