@@ -11,8 +11,8 @@ export interface FollowersData {
 }
 
 export interface Config {
-  readonly FOLLOWERS_FILE: string;
   readonly GITHUB_TOKEN: string;
+  readonly GITHUB_USERNAME: string;
   readonly MAX_DISPLAY_FOLLOWERS: number;
-  readonly USERNAME: string;
+  readonly FOLLOWERS_FILE: string;
 }

@@ -25,7 +25,7 @@ class GitHubFollowersTracker {
             process.exit(1);
         }
 
-        if (!config.USERNAME || config.USERNAME === 'your_github_username_here') {
+        if (!config.GITHUB_USERNAME || config.GITHUB_USERNAME === 'your_github_username_here') {
             console.error('✗ ERROR: GITHUB_USERNAME not configured');
             console.info('ℹ  Please edit the .env file and add your actual GitHub username');
             process.exit(1);
@@ -37,7 +37,7 @@ class GitHubFollowersTracker {
         let page: number = 1;
 
         while (true) {
-            const url: string = `https://api.github.com/users/${config.USERNAME}/followers?page=${page}&per_page=${GitHubFollowersTracker.PER_PAGE}`;
+            const url: string = `https://api.github.com/users/${config.GITHUB_USERNAME}/followers?page=${page}&per_page=${GitHubFollowersTracker.PER_PAGE}`;
             const response: Response = await fetch(url, { headers: this.headers });
 
             if (!response.ok) {
@@ -101,7 +101,7 @@ class GitHubFollowersTracker {
     }
 
     public async track(): Promise<void> {
-        console.log('✓ Checking followers for %s...', config.USERNAME);
+        console.log('✓ Checking followers for %s...', config.GITHUB_USERNAME);
 
         const current: Set<string> = await this.fetchFollowers();
         const previous: Set<string> = await this.readPreviousFollowers();
