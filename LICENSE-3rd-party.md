@@ -1,4 +1,8 @@
-https://github.com/motdotla/dotenv
+# Third-Party Dependencies Licenses
+
+This project uses open-source software from third parties. Below are the licenses and copyright notices for these components.
+
+## [motdotla/dotenv](https://github.com/motdotla/dotenv)
 
 Copyright (c) 2015, Scott Motte
 All rights reserved.
@@ -23,3 +27,7 @@ SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
 CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+---
+
+*This file was generated based on the project's dependencies.*
