@@ -56,10 +56,10 @@ npm run track
 
 ### Example output:
 ``` bash
-✓ Checking followers for username...
-✓ New followers (2): user1, user2
-⚠ Unfollowed (1): user3
-ℹ Total followers: 154
+✔  Checking followers for username...
+😊 New followers (2): user1, user2
+😞 Unfollowed (1): user3
+ℹ  Total followers: 154
 ```
 
 ### Notes:
