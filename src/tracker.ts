@@ -20,13 +20,13 @@ class GitHubFollowersTracker {
 
     private validateConfig(): void {
         if (!config.GITHUB_TOKEN || config.GITHUB_TOKEN === 'your_github_token_here') {
-            console.error('✗ ERROR: GITHUB_TOKEN not configured');
+            console.error('❌ ERROR: GITHUB_TOKEN not configured');
             console.info('ℹ  Please edit the .env file and add your actual GitHub personal access token');
             process.exit(1);
         }
 
         if (!config.GITHUB_USERNAME || config.GITHUB_USERNAME === 'your_github_username_here') {
-            console.error('✗ ERROR: GITHUB_USERNAME not configured');
+            console.error('❌ ERROR: GITHUB_USERNAME not configured');
             console.info('ℹ  Please edit the .env file and add your actual GitHub username');
             process.exit(1);
         }
@@ -86,7 +86,7 @@ class GitHubFollowersTracker {
             const moreText = gainedFollowers.size > config.MAX_DISPLAY_FOLLOWERS ? 
                 ` and ${gainedFollowers.size - config.MAX_DISPLAY_FOLLOWERS} more` : '';
 
-            console.log('✓ New followers (%d): %s%s', gainedFollowers.size, displayedGainedFollowers.join(', '), moreText);
+            console.log('😊 New followers (%d): %s%s', gainedFollowers.size, displayedGainedFollowers.join(', '), moreText);
         }
 
         if (lostFollowers.size > 0) {
@@ -94,14 +94,14 @@ class GitHubFollowersTracker {
             const moreText = lostFollowers.size > config.MAX_DISPLAY_FOLLOWERS ? 
                 ` and ${lostFollowers.size - config.MAX_DISPLAY_FOLLOWERS} more` : '';
 
-            console.warn('⚠ Unfollowed (%d): %s%s', lostFollowers.size, displayedLostFollowers.join(', '), moreText);
+            console.warn('😞 Unfollowed (%d): %s%s', lostFollowers.size, displayedLostFollowers.join(', '), moreText);
         }
 
-        console.info('ℹ Total followers: %d', total);
+        console.info('ℹ  Total followers: %d', total);
     }
 
     public async track(): Promise<void> {
-        console.log('✓ Checking followers for %s...', config.GITHUB_USERNAME);
+        console.log('✔  Checking followers for %s...', config.GITHUB_USERNAME);
 
         const current: Set<string> = await this.fetchFollowers();
         const previous: Set<string> = await this.readPreviousFollowers();
@@ -115,6 +115,6 @@ class GitHubFollowersTracker {
 }
 
 new GitHubFollowersTracker().track().catch((error: unknown) => {
-    console.error('✗ Error: %s', error instanceof Error ? error.message : 'Unknown error');
+    console.error('❌ Error: %s', error instanceof Error ? error.message : 'Unknown error');
     process.exit(1);
 });
