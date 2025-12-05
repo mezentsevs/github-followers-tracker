@@ -14,7 +14,7 @@ Based on tech stack:
 - [TypeScript](https://www.typescriptlang.org),
 - [GitHub REST API](https://docs.github.com/en/rest),
 - [FS Promises API](https://nodejs.org/api/fs.html),
-- [dotenv](https://github.com/motdotla/dotenv).
+- [Dotenv](https://github.com/motdotla/dotenv).
 
 ## Getting Started
 
