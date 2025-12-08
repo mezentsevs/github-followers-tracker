@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "type": "module",
   "description": "A TypeScript application that tracks your GitHub followers and detects changes between runs.",
-  "main": "index.js",
+  "main": "dist/tracker.js",
   "scripts": {
     "build": "tsc",
     "postinstall": "npm run build",
