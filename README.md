@@ -67,7 +67,6 @@ npm run track
 - Token only needs 'public_repo' scope
 - Data is stored in data/followers.json (completely overwritten each run)
 - First run creates baseline, subsequent runs show changes
-- For issues check the GitHub repository
 
 That's it! Thank you!
 
