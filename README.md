@@ -7,7 +7,7 @@ Please be aware that this application is in active development and hasn't been e
 
 This is a followers tracker, written in and for educational and demonstrational purposes.
 
-A lightweight and convenient application that tracks your GitHub followers and detects changes between runs.
+A lightweight and convenient application that tracks your GitHub followers, detects changes between runs, and allows you to check if specific users are in your followers list.
 
 Based on tech stack:
 - [Node.js](https://nodejs.org),
@@ -28,8 +28,8 @@ cp .env.example .env
 
 2. Get GitHub token:
 - Go to https://github.com/settings/tokens
-- Click "Generate new token" → "Generate new token (classic)"
-- Set expiration and check only "public_repo" scope
+- Click `Generate new token` → `Generate new token (classic)`
+- Set expiration and check only `public_repo` scope
 - Copy the token immediately
 
 3. Edit .env file and add your credentials:
@@ -38,7 +38,15 @@ GITHUB_TOKEN=your_github_token_here
 GITHUB_USERNAME=your_github_username_here
 ```
 
-4. Run:
+### Notes:
+- Never commit your `.env` file
+- Token only needs `public_repo` scope
+
+## Track
+
+The main script that fetches your current GitHub followers, compares them with previous data, and shows changes.
+
+### Usage:
 ``` bash
 npm run track
 ```
@@ -50,9 +58,7 @@ npm run track
 - Stores data locally for future comparisons
 
 ### Configuration (.env):
-- GITHUB_TOKEN: Your GitHub personal access token
-- GITHUB_USERNAME: Your GitHub username  
-- MAX_DISPLAY_FOLLOWERS: Max usernames to show (default: 100)
+- `MAX_DISPLAY_FOLLOWERS`: Max usernames to show (default: 100)
 
 ### Example output:
 ``` bash
@@ -63,10 +69,51 @@ npm run track
 ```
 
 ### Notes:
-- Never commit your .env file
-- Token only needs 'public_repo' scope
-- Data is stored in data/followers.json (completely overwritten each run)
+- Data is stored in `data/followers.json` (completely overwritten each run)
 - First run creates baseline, subsequent runs show changes
+
+## Check
+
+Additional script that checks if a specific user is in your followers list. Can use either current data from GitHub API or cached data from previous runs.
+
+### Usage:
+``` bash
+npm run check <username> [cached]
+```
+
+### Parameters:
+- `<username>`: **Required**. The GitHub username to check
+- `[cached]`: **Optional**. Use cached data instead of fetching fresh data from GitHub API
+
+### Examples:
+
+Check if user "octocat" is in your current followers (fetches fresh data):
+``` bash
+npm run check octocat
+```
+
+Check if user "octocat" is in your cached followers (uses locally stored data):
+``` bash
+npm run check octocat cached
+```
+
+### Example outputs:
+
+**When user IS in followers list:**
+``` bash
+🔄 Updating followers data...
+✅ User "octocat" is in your current followers list
+```
+
+**When user is NOT in followers list:**
+``` bash
+📁 Using cached followers data...
+❌ User "octocat" is NOT in your cached followers list
+```
+
+### Notes:
+- Without the `cached` parameter, the script fetches fresh data from GitHub API
+- With the `cached` parameter, uses data from `data/followers.json` without API calls (useful for quick checks without hitting API rate limits)
 
 That's it! Thank you!
 
