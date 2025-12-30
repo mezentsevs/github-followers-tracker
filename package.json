@@ -7,7 +7,8 @@
   "scripts": {
     "build": "tsc",
     "postinstall": "npm run build",
-    "track": "node dist/tracker.js"
+    "track": "node dist/tracker.js",
+    "check": "node dist/checker.js"
   },
   "repository": {
     "type": "git",
@@ -16,7 +17,8 @@
   "keywords": [
     "github",
     "followers",
-    "tracker"
+    "tracker",
+    "checker"
   ],
   "author": "mezentsevs",
   "license": "MIT",

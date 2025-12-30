@@ -3,7 +3,7 @@ import { dirname } from 'path';
 import { promises as fs } from 'fs';
 import type { GitHubUser, FollowersData } from './types.js';
 
-class GitHubFollowersTracker {
+export class GitHubFollowersTracker {
     private static readonly API_DELAY_MS: number = 1000;
     private static readonly PER_PAGE: number = 100;
     
@@ -20,16 +20,29 @@ class GitHubFollowersTracker {
 
     private validateConfig(): void {
         if (!config.GITHUB_TOKEN || config.GITHUB_TOKEN === 'your_github_token_here') {
-            console.error('❌ ERROR: GITHUB_TOKEN not configured');
+            console.error('❌ Error: GITHUB_TOKEN not configured');
             console.info('ℹ  Please edit the .env file and add your actual GitHub personal access token');
             process.exit(1);
         }
 
         if (!config.GITHUB_USERNAME || config.GITHUB_USERNAME === 'your_github_username_here') {
-            console.error('❌ ERROR: GITHUB_USERNAME not configured');
+            console.error('❌ Error: GITHUB_USERNAME not configured');
             console.info('ℹ  Please edit the .env file and add your actual GitHub username');
             process.exit(1);
         }
+    }
+
+    public async track(): Promise<void> {
+        console.log('✔  Checking followers for %s...', config.GITHUB_USERNAME);
+
+        const current: Set<string> = await this.fetchFollowers();
+        const previous: Set<string> = await this.readPreviousFollowers();
+
+        const gainedFollowers: Set<string> = new Set([...current].filter((f: string) => !previous.has(f)));
+        const lostFollowers: Set<string> = new Set([...previous].filter((f: string) => !current.has(f)));
+
+        await this.saveFollowers(current);
+        this.displayResults(gainedFollowers, lostFollowers, current.size);
     }
 
     private async fetchFollowers(): Promise<Set<string>> {
@@ -60,7 +73,7 @@ class GitHubFollowersTracker {
         return new Set(followers);
     }
 
-    private async readPreviousFollowers(): Promise<Set<string>> {
+    public async readPreviousFollowers(): Promise<Set<string>> {
         try {
             const data: string = await fs.readFile(config.FOLLOWERS_FILE, 'utf8');
 
@@ -100,21 +113,15 @@ class GitHubFollowersTracker {
         console.info('ℹ  Total followers: %d', total);
     }
 
-    public async track(): Promise<void> {
-        console.log('✔  Checking followers for %s...', config.GITHUB_USERNAME);
-
+    public async updateFollowers(): Promise<void> {
         const current: Set<string> = await this.fetchFollowers();
-        const previous: Set<string> = await this.readPreviousFollowers();
-
-        const gainedFollowers: Set<string> = new Set([...current].filter((f: string) => !previous.has(f)));
-        const lostFollowers: Set<string> = new Set([...previous].filter((f: string) => !current.has(f)));
-
         await this.saveFollowers(current);
-        this.displayResults(gainedFollowers, lostFollowers, current.size);
     }
 }
 
-new GitHubFollowersTracker().track().catch((error: unknown) => {
-    console.error('❌ Error: %s', error instanceof Error ? error.message : 'Unknown error');
-    process.exit(1);
-});
+if (process.argv[1] && process.argv[1].endsWith('tracker.js')) {
+    new GitHubFollowersTracker().track().catch((error: unknown) => {
+        console.error('❌ Error: %s', error instanceof Error ? error.message : 'Unknown error');
+        process.exit(1);
+    });
+}
