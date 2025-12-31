@@ -1,8 +1,5 @@
 # GitHub followers tracker
 
-## Note on Future Development
-Please be aware that this application is in active development and hasn't been extensively tested with very large numbers of followers yet. If you encounter any performance issues or bugs in such scenarios, contributions are greatly appreciated - feel free to open a pull request, and we can work together to improve it. Thank you for your understanding and support.
-
 ## About 'GitHub followers tracker'
 
 This is a followers tracker, written in and for educational and demonstrational purposes.
