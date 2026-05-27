@@ -114,6 +114,13 @@ npm run check octocat cached
 
 That's it! Thank you!
 
+## ⭐ If You Found This Useful
+
+If this project helped you - whether it saved you time, taught you something, or gave you an idea - please consider leaving a star or a like.
+A ⭐, 👍, ❤️, or 💎 tells me that the work matters. It's a small gesture that genuinely fuels my motivation to keep improving the project and building new tools.
+
+Thanks for your interest in this project!
+
 ## License
 
 The 'GitHub followers tracker' is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
